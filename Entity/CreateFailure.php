@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity
  */
-class CreateFailure implements \JsonSerializable
+class CreateFailure implements EntityInterface, \JsonSerializable
 {
     public const CODE_UNKNOWN = 0;
     public const REASON_UNKNOWN = 'unknown';
