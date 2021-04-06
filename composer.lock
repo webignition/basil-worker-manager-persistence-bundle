@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "011e0bb28f5305b57f97be7e437a9e32",
+    "content-hash": "a9586036108e19274b11f2fb61077d2b",
     "packages": [
         {
             "name": "composer/package-versions-deprecated",
@@ -2841,6 +2841,53 @@
                 }
             ],
             "time": "2021-03-28T09:42:18+00:00"
+        },
+        {
+            "name": "webignition/basil-worker-manager-interfaces",
+            "version": "0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/webignition/basil-worker-manager-interfaces.git",
+                "reference": "284f8780a1a12db0bdd6b0a71332164e0c8557b9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/webignition/basil-worker-manager-interfaces/zipball/284f8780a1a12db0bdd6b0a71332164e0c8557b9",
+                "reference": "284f8780a1a12db0bdd6b0a71332164e0c8557b9",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8"
+            },
+            "require-dev": {
+                "phpstan/extension-installer": "^1.1",
+                "phpstan/phpstan": "^0.12.82",
+                "phpunit/phpunit": "^9.5",
+                "squizlabs/php_codesniffer": "^3.5",
+                "symplify/easy-coding-standard": "^9.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "webignition\\BasilWorkerManagerInterfaces\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jon Cram",
+                    "email": "webignition@gmail.com"
+                }
+            ],
+            "homepage": "https://github.com/webignition/basil-worker-manager-interfaces",
+            "support": {
+                "issues": "https://github.com/webignition/basil-worker-manager-interfaces/issues",
+                "source": "https://github.com/webignition/basil-worker-manager-interfaces/tree/0.2"
+            },
+            "time": "2021-04-06T09:03:44+00:00"
         }
     ],
     "packages-dev": [
