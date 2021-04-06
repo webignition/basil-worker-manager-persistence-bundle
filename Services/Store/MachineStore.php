@@ -8,7 +8,7 @@ class MachineStore extends AbstractMachineEntityStore
 {
     public function find(string $machineId): ?Machine
     {
-        $entity = $this->doFind(Machine::class, $machineId);
+        $entity = $this->entityManager->find(Machine::class, $machineId);
 
         return $entity instanceof Machine ? $entity : null;
     }
