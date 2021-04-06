@@ -3,6 +3,7 @@
 namespace webignition\BasilWorkerManager\PersistenceBundle\Services\Store;
 
 use webignition\BasilWorkerManager\PersistenceBundle\Entity\Machine;
+use webignition\BasilWorkerManagerInterfaces\MachineInterface;
 
 class MachineStore extends AbstractMachineEntityStore
 {
@@ -13,8 +14,10 @@ class MachineStore extends AbstractMachineEntityStore
         return $entity instanceof Machine ? $entity : null;
     }
 
-    public function store(Machine $entity): void
+    public function store(MachineInterface $entity): void
     {
-        $this->doStore($entity);
+        if ($entity instanceof Machine) {
+            $this->doStore($entity);
+        }
     }
 }
