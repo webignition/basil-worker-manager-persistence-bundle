@@ -8,7 +8,7 @@ class CreateFailureStore extends AbstractMachineEntityStore
 {
     public function find(string $machineId): ?CreateFailure
     {
-        $entity = $this->doFind(CreateFailure::class, $machineId);
+        $entity = $this->entityManager->find(CreateFailure::class, $machineId);
 
         return $entity instanceof CreateFailure ? $entity : null;
     }
