@@ -2,6 +2,7 @@
 
 namespace webignition\BasilWorkerManager\PersistenceBundle\Entity;
 
-interface EntityInterface
+interface MachineEntityInterface
 {
+    public function getId(): string;
 }
