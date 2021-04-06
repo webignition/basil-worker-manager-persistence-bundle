@@ -9,7 +9,7 @@ use webignition\BasilWorkerManagerInterfaces\ProviderInterface;
 /**
  * @ORM\Entity
  */
-class Machine implements MachineEntityInterface, MachineInterface
+class Machine implements MachineInterface
 {
     private const NAME = 'worker-%s';
 

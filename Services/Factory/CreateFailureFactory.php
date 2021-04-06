@@ -3,6 +3,8 @@
 namespace webignition\BasilWorkerManager\PersistenceBundle\Services\Factory;
 
 use webignition\BasilWorkerManager\PersistenceBundle\Entity\CreateFailure;
+use webignition\BasilWorkerManager\PersistenceBundle\Services\Store\CreateFailureStore;
+use webignition\BasilWorkerManager\PersistenceBundle\Services\Store\MachineEntityStore;
 use webignition\BasilWorkerManagerInterfaces\Exception\MachineProvider\ApiLimitExceptionInterface;
 use webignition\BasilWorkerManagerInterfaces\Exception\MachineProvider\AuthenticationExceptionInterface;
 use webignition\BasilWorkerManagerInterfaces\Exception\MachineProvider\CurlExceptionInterface;
@@ -11,7 +13,7 @@ use webignition\BasilWorkerManagerInterfaces\Exception\MachineProvider\HttpExcep
 use webignition\BasilWorkerManagerInterfaces\Exception\MachineProvider\UnprocessableRequestExceptionInterface;
 use webignition\BasilWorkerManagerInterfaces\Exception\UnsupportedProviderExceptionInterface;
 
-class CreateFailureFactory extends AbstractMachineEntityFactory
+class CreateFailureFactory
 {
     /**
      * @var array<CreateFailure::CODE_*, CreateFailure::REASON_*>
@@ -25,11 +27,16 @@ class CreateFailureFactory extends AbstractMachineEntityFactory
         CreateFailure::CODE_UNPROCESSABLE_REQUEST => CreateFailure::REASON_UNPROCESSABLE_REQUEST,
     ];
 
+    public function __construct(
+        private CreateFailureStore $store,
+    ) {
+    }
+
     public function create(
         string $machineId,
         ExceptionInterface | UnsupportedProviderExceptionInterface $exception
     ): CreateFailure {
-        $existingEntity = $this->store->find(CreateFailure::class, $machineId);
+        $existingEntity = $this->store->find($machineId);
         if ($existingEntity instanceof CreateFailure) {
             return $existingEntity;
         }

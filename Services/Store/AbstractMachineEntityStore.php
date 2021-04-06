@@ -3,9 +3,10 @@
 namespace webignition\BasilWorkerManager\PersistenceBundle\Services\Store;
 
 use Doctrine\ORM\EntityManagerInterface;
-use webignition\BasilWorkerManager\PersistenceBundle\Entity\MachineEntityInterface;
+use webignition\BasilWorkerManager\PersistenceBundle\Entity\CreateFailure;
+use webignition\BasilWorkerManager\PersistenceBundle\Entity\Machine;
 
-class MachineEntityStore
+abstract class AbstractMachineEntityStore
 {
     public function __construct(
         private EntityManagerInterface $entityManager
@@ -15,14 +16,14 @@ class MachineEntityStore
     /**
      * @param class-string $className
      */
-    public function find(string $className, string $machineId): ?MachineEntityInterface
+    protected function doFind(string $className, string $machineId): ?object
     {
         $entity = $this->entityManager->find($className, $machineId);
 
-        return $entity instanceof MachineEntityInterface ? $entity : null;
+        return $entity instanceof $className ? $entity : null;
     }
 
-    public function store(MachineEntityInterface $entity): void
+    public function doStore(CreateFailure | Machine $entity): void
     {
         $this->entityManager->persist($entity);
         $this->entityManager->flush();
