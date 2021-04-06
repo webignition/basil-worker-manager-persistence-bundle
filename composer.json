@@ -53,6 +53,9 @@
     "scripts": {
         "cs-ecs": "./vendor/bin/ecs check --ansi --no-progress-bar --config ecs.php",
         "cs-phpcs": "./vendor/bin/phpcs",
+        "cs-fix": [
+            "./vendor/bin/ecs check --ansi --config ecs.php --fix"
+        ],
         "cs": [
             "@cs-ecs",
             "@cs-phpcs"

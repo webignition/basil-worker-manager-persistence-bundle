@@ -12,3 +12,4 @@ services:
       $entityManager: '@Doctrine\ORM\EntityManagerInterface'
       $entityClasses:
         - 'webignition\BasilWorkerManager\PersistenceBundle\Entity\Machine'
+        - 'webignition\BasilWorkerManager\PersistenceBundle\Entity\CreateFailure'

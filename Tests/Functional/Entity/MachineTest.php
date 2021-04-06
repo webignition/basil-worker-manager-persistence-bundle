@@ -15,9 +15,9 @@ class MachineTest extends AbstractFunctionalTest
         $repository = $this->entityManager->getRepository(Machine::class);
         self::assertCount(0, $repository->findAll());
 
-        $machine = new Machine('machine id', ProviderInterface::NAME_DIGITALOCEAN);
+        $entity = new Machine('machine id', ProviderInterface::NAME_DIGITALOCEAN);
 
-        $this->entityManager->persist($machine);
+        $this->entityManager->persist($entity);
         $this->entityManager->flush();
 
         self::assertCount(1, $repository->findAll());
