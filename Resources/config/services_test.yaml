@@ -1,0 +1,14 @@
+imports:
+  - { resource: services_test_doctrine.yaml }
+
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: true
+
+  webignition\BasilWorkerManager\PersistenceBundle\Tests\Services\DatabaseSchemaCreator:
+    arguments:
+      $entityManager: '@Doctrine\ORM\EntityManagerInterface'
+      $entityClasses:
+        - 'webignition\BasilWorkerManager\PersistenceBundle\Entity\Machine'
