@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity
  */
-class CreateFailure implements EntityInterface, \JsonSerializable
+class CreateFailure implements MachineEntityInterface, \JsonSerializable
 {
     public const CODE_UNKNOWN = 0;
     public const REASON_UNKNOWN = 'unknown';
@@ -70,6 +70,10 @@ class CreateFailure implements EntityInterface, \JsonSerializable
         $this->context = $context;
     }
 
+    public function getId(): string
+    {
+        return $this->id;
+    }
 
     /**
      * @return array<string, string|int|array<string, string|int>>
