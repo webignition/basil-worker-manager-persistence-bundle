@@ -4,28 +4,29 @@ declare(strict_types=1);
 
 namespace webignition\BasilWorkerManager\PersistenceBundle\Tests\Functional\Services\Store;
 
-use webignition\BasilWorkerManager\PersistenceBundle\Entity\Machine;
-use webignition\BasilWorkerManager\PersistenceBundle\Services\Store\MachineStore;
+use webignition\BasilWorkerManager\PersistenceBundle\Entity\MachineProvider;
+use webignition\BasilWorkerManager\PersistenceBundle\Services\Store\MachineProviderStore;
 use webignition\BasilWorkerManager\PersistenceBundle\Tests\Functional\AbstractFunctionalTest;
+use webignition\BasilWorkerManagerInterfaces\ProviderInterface;
 
-class MachineStoreTest extends AbstractFunctionalTest
+class MachineProviderStoreTest extends AbstractFunctionalTest
 {
     private const MACHINE_ID = 'machine id';
 
-    private MachineStore $store;
+    private MachineProviderStore $store;
 
     protected function setUp(): void
     {
         parent::setUp();
 
-        $store = $this->container->get(MachineStore::class);
-        \assert($store instanceof MachineStore);
+        $store = $this->container->get(MachineProviderStore::class);
+        \assert($store instanceof MachineProviderStore);
         $this->store = $store;
     }
 
     public function testStore(): void
     {
-        $entity = new Machine(self::MACHINE_ID);
+        $entity = new MachineProvider(self::MACHINE_ID, ProviderInterface::NAME_DIGITALOCEAN);
 
         $repository = $this->entityManager->getRepository($entity::class);
         self::assertCount(0, $repository->findAll());
@@ -37,7 +38,7 @@ class MachineStoreTest extends AbstractFunctionalTest
 
     public function testFind(): void
     {
-        $entity = new Machine(self::MACHINE_ID);
+        $entity = new MachineProvider(self::MACHINE_ID, ProviderInterface::NAME_DIGITALOCEAN);
 
         $repository = $this->entityManager->getRepository($entity::class);
         self::assertCount(0, $repository->findAll());

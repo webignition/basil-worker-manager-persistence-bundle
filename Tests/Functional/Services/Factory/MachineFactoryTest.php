@@ -7,7 +7,6 @@ namespace webignition\BasilWorkerManager\PersistenceBundle\Tests\Functional\Serv
 use webignition\BasilWorkerManager\PersistenceBundle\Entity\Machine;
 use webignition\BasilWorkerManager\PersistenceBundle\Services\Factory\MachineFactory;
 use webignition\BasilWorkerManager\PersistenceBundle\Tests\Functional\AbstractFunctionalTest;
-use webignition\BasilWorkerManagerInterfaces\ProviderInterface;
 
 class MachineFactoryTest extends AbstractFunctionalTest
 {
@@ -29,11 +28,11 @@ class MachineFactoryTest extends AbstractFunctionalTest
         $repository = $this->entityManager->getRepository(Machine::class);
         self::assertCount(0, $repository->findAll());
 
-        $entity = $this->factory->create(self::MACHINE_ID, ProviderInterface::NAME_DIGITALOCEAN);
+        $entity = $this->factory->create(self::MACHINE_ID);
 
         self::assertCount(1, $repository->findAll());
         self::assertEquals(
-            new Machine(self::MACHINE_ID, ProviderInterface::NAME_DIGITALOCEAN),
+            new Machine(self::MACHINE_ID),
             $entity
         );
     }

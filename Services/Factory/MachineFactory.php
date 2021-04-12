@@ -4,7 +4,6 @@ namespace webignition\BasilWorkerManager\PersistenceBundle\Services\Factory;
 
 use webignition\BasilWorkerManager\PersistenceBundle\Entity\Machine;
 use webignition\BasilWorkerManager\PersistenceBundle\Services\Store\MachineStore;
-use webignition\BasilWorkerManagerInterfaces\ProviderInterface;
 
 class MachineFactory
 {
@@ -13,12 +12,9 @@ class MachineFactory
     ) {
     }
 
-    /**
-     * @param ProviderInterface::NAME_* $provider
-     */
-    public function create(string $machineId, string $provider): Machine
+    public function create(string $machineId): Machine
     {
-        $entity = new Machine($machineId, $provider);
+        $entity = new Machine($machineId);
         $this->store->store($entity);
 
         return $entity;

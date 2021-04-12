@@ -13,3 +13,4 @@ services:
       $entityClasses:
         - 'webignition\BasilWorkerManager\PersistenceBundle\Entity\Machine'
         - 'webignition\BasilWorkerManager\PersistenceBundle\Entity\CreateFailure'
+        - 'webignition\BasilWorkerManager\PersistenceBundle\Entity\MachineProvider'
