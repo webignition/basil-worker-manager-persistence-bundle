@@ -32,7 +32,7 @@ class CreateFailure implements \JsonSerializable
 
     /**
      * @ORM\Id
-     * @ORM\Column(type="string", length=128)
+     * @ORM\Column(type="string", length=MachineIdInterface::LENGTH)
      */
     private string $id;
 
