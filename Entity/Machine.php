@@ -32,11 +32,11 @@ class Machine implements MachineInterface
     private string $state;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      *
-     * @var ProviderInterface::NAME_*
+     * @var ProviderInterface::NAME_*|null
      */
-    private string $provider;
+    private ?string $provider;
 
     /**
      * @ORM\Column(type="simple_array", nullable=true)
@@ -52,7 +52,7 @@ class Machine implements MachineInterface
      */
     public function __construct(
         string $id,
-        string $provider,
+        ?string $provider = null,
         ?int $remoteId = null,
         string $state = MachineInterface::STATE_CREATE_RECEIVED,
         array $ipAddresses = [],
@@ -80,9 +80,9 @@ class Machine implements MachineInterface
     }
 
     /**
-     * @return ProviderInterface::NAME_*
+     * @return ProviderInterface::NAME_*|null
      */
-    public function getProvider(): string
+    public function getProvider(): ?string
     {
         return $this->provider;
     }
