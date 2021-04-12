@@ -4,7 +4,6 @@ namespace webignition\BasilWorkerManager\PersistenceBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use webignition\BasilWorkerManagerInterfaces\MachineInterface;
-use webignition\BasilWorkerManagerInterfaces\ProviderInterface;
 
 /**
  * @ORM\Entity
@@ -20,23 +19,11 @@ class Machine implements MachineInterface
     private string $id;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
-    private ?int $remote_id;
-
-    /**
      * @ORM\Column(type="string", length=255)
      *
      * @var MachineInterface::STATE_*
      */
     private string $state;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     *
-     * @var ProviderInterface::NAME_*|null
-     */
-    private ?string $provider;
 
     /**
      * @ORM\Column(type="simple_array", nullable=true)
@@ -46,20 +33,15 @@ class Machine implements MachineInterface
     private array $ip_addresses;
 
     /**
-     * @param ProviderInterface::NAME_* $provider
      * @param MachineInterface::STATE_* $state
      * @param string[] $ipAddresses
      */
     public function __construct(
         string $id,
-        ?string $provider = null,
-        ?int $remoteId = null,
         string $state = MachineInterface::STATE_CREATE_RECEIVED,
         array $ipAddresses = [],
     ) {
         $this->id = $id;
-        $this->provider = $provider;
-        $this->remote_id = $remoteId;
         $this->state = $state;
         $this->ip_addresses = $ipAddresses;
     }
@@ -67,24 +49,6 @@ class Machine implements MachineInterface
     public function getId(): string
     {
         return $this->id;
-    }
-
-    public function getRemoteId(): ?int
-    {
-        return $this->remote_id;
-    }
-
-    public function setRemoteId(int $remoteId): void
-    {
-        $this->remote_id = $remoteId;
-    }
-
-    /**
-     * @return ProviderInterface::NAME_*|null
-     */
-    public function getProvider(): ?string
-    {
-        return $this->provider;
     }
 
     public function getName(): string

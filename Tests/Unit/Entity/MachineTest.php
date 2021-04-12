@@ -7,12 +7,10 @@ namespace webignition\BasilWorkerManager\PersistenceBundle\Tests\Unit\Entity;
 use PHPUnit\Framework\TestCase;
 use webignition\BasilWorkerManager\PersistenceBundle\Entity\Machine;
 use webignition\BasilWorkerManagerInterfaces\MachineInterface;
-use webignition\BasilWorkerManagerInterfaces\ProviderInterface;
 
 class MachineTest extends TestCase
 {
     private const MACHINE_ID = 'machine id';
-    private const MACHINE_PROVIDER = ProviderInterface::NAME_DIGITALOCEAN;
 
     private Machine $machine;
 
@@ -20,26 +18,15 @@ class MachineTest extends TestCase
     {
         parent::setUp();
 
-        $this->machine = new Machine(self::MACHINE_ID, self::MACHINE_PROVIDER);
+        $this->machine = new Machine(self::MACHINE_ID);
     }
 
     public function testCreate(): void
     {
         self::assertSame(self::MACHINE_ID, $this->machine->getId());
-        self::assertNull($this->machine->getRemoteId());
         self::assertSame(MachineInterface::STATE_CREATE_RECEIVED, $this->machine->getState());
-        self::assertSame(self::MACHINE_PROVIDER, $this->machine->getProvider());
         self::assertSame([], $this->machine->getIpAddresses());
         self::assertSame('worker-' . self::MACHINE_ID, $this->machine->getName());
-    }
-
-    public function testGetSetRemoteId(): void
-    {
-        self::assertNull($this->machine->getRemoteId());
-
-        $remoteId = 123;
-        $this->machine->setRemoteId($remoteId);
-        self::assertSame($remoteId, $this->machine->getRemoteId());
     }
 
     public function testGetSetState(): void
