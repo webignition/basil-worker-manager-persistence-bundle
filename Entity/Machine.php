@@ -14,7 +14,7 @@ class Machine implements MachineInterface
 
     /**
      * @ORM\Id
-     * @ORM\Column(type="string", length=64)
+     * @ORM\Column(type="string", length=MachineIdInterface::LENGTH)
      */
     private string $id;
 
