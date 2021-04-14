@@ -16,6 +16,11 @@ class MachineProviderStore extends AbstractMachineEntityStore
 
     public function store(MachineProviderInterface $entity): void
     {
+        $existingEntity = $this->find($entity->getId());
+        if ($existingEntity instanceof MachineProvider) {
+            $entity = $existingEntity->merge($entity);
+        }
+
         if ($entity instanceof MachineProvider) {
             $this->doStore($entity);
         }
