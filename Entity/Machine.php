@@ -100,7 +100,11 @@ class Machine implements MachineInterface
     public function merge(MachineInterface $machine): self
     {
         $this->state = $machine->getState();
-        $this->ip_addresses = $machine->getIpAddresses();
+
+        $ipAddresses = $machine->getIpAddresses();
+        if ([] !== $ipAddresses) {
+            $this->ip_addresses = $machine->getIpAddresses();
+        }
 
         return $this;
     }
