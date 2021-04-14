@@ -16,6 +16,11 @@ class MachineStore extends AbstractMachineEntityStore
 
     public function store(MachineInterface $entity): void
     {
+        $existingEntity = $this->find($entity->getId());
+        if ($existingEntity instanceof Machine) {
+            $entity = $existingEntity->merge($entity);
+        }
+
         if ($entity instanceof Machine) {
             $this->doStore($entity);
         }

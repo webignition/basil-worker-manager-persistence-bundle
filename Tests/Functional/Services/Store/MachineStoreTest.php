@@ -7,6 +7,7 @@ namespace webignition\BasilWorkerManager\PersistenceBundle\Tests\Functional\Serv
 use webignition\BasilWorkerManager\PersistenceBundle\Entity\Machine;
 use webignition\BasilWorkerManager\PersistenceBundle\Services\Store\MachineStore;
 use webignition\BasilWorkerManager\PersistenceBundle\Tests\Functional\AbstractFunctionalTest;
+use webignition\BasilWorkerManagerInterfaces\MachineInterface;
 
 class MachineStoreTest extends AbstractFunctionalTest
 {
@@ -32,6 +33,20 @@ class MachineStoreTest extends AbstractFunctionalTest
 
         $this->store->store($entity);
 
+        self::assertCount(1, $repository->findAll());
+    }
+
+    public function testStoreOverwritesExistingEntity(): void
+    {
+        $repository = $this->entityManager->getRepository(Machine::class);
+        self::assertCount(0, $repository->findAll());
+
+        $existingEntity = new Machine(self::MACHINE_ID);
+        $this->store->store($existingEntity);
+        self::assertCount(1, $repository->findAll());
+
+        $newEntity = new Machine(self::MACHINE_ID, MachineInterface::STATE_UP_ACTIVE, ['127.0.0.1']);
+        $this->store->store($newEntity);
         self::assertCount(1, $repository->findAll());
     }
 

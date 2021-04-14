@@ -96,4 +96,12 @@ class Machine implements MachineInterface
             'ip_addresses' => $this->ip_addresses,
         ];
     }
+
+    public function merge(MachineInterface $machine): self
+    {
+        $this->state = $machine->getState();
+        $this->ip_addresses = $machine->getIpAddresses();
+
+        return $this;
+    }
 }
