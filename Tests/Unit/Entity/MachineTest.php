@@ -58,4 +58,65 @@ class MachineTest extends TestCase
             $this->machine->jsonSerialize()
         );
     }
+
+    /**
+     * @dataProvider mergeDataProvider
+     */
+    public function testMerge(Machine $current, Machine $new, Machine $expected): void
+    {
+        self::assertEquals($expected, $current->merge($new));
+    }
+
+    /**
+     * @return array[]
+     */
+    public function mergeDataProvider(): array
+    {
+        return [
+            'current and new are equal' => [
+                'current' => new Machine(self::MACHINE_ID),
+                'new' => new Machine(self::MACHINE_ID),
+                'expected' => new Machine(self::MACHINE_ID),
+            ],
+            'current and new have different states' => [
+                'current' => new Machine(self::MACHINE_ID, MachineInterface::STATE_UP_STARTED),
+                'new' => new Machine(self::MACHINE_ID, MachineInterface::STATE_UP_ACTIVE),
+                'expected' => new Machine(self::MACHINE_ID, MachineInterface::STATE_UP_ACTIVE),
+            ],
+            'current and new have non-empty ip addresses' => [
+                'current' => new Machine(
+                    self::MACHINE_ID,
+                    MachineInterface::STATE_UP_STARTED,
+                    ['a', 'b']
+                ),
+                'new' => new Machine(
+                    self::MACHINE_ID,
+                    MachineInterface::STATE_UP_STARTED,
+                    ['c', 'd']
+                ),
+                'expected' => new Machine(
+                    self::MACHINE_ID,
+                    MachineInterface::STATE_UP_STARTED,
+                    ['c', 'd']
+                ),
+            ],
+            'current ip addresses are not overwritten by empty new ip addresses' => [
+                'current' => new Machine(
+                    self::MACHINE_ID,
+                    MachineInterface::STATE_UP_STARTED,
+                    ['a', 'b']
+                ),
+                'new' => new Machine(
+                    self::MACHINE_ID,
+                    MachineInterface::STATE_UP_STARTED,
+                    []
+                ),
+                'expected' => new Machine(
+                    self::MACHINE_ID,
+                    MachineInterface::STATE_UP_STARTED,
+                    ['a', 'b']
+                ),
+            ],
+        ];
+    }
 }
