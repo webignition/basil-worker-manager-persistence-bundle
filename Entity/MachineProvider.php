@@ -65,7 +65,11 @@ class MachineProvider implements MachineProviderInterface
     public function merge(MachineProviderInterface $machineProvider): self
     {
         $this->provider = $machineProvider->getName();
-        $this->remote_id = $machineProvider->getRemoteId();
+
+        $remoteId = $machineProvider->getRemoteId();
+        if (null !== $remoteId) {
+            $this->remote_id = $remoteId;
+        }
 
         return $this;
     }
