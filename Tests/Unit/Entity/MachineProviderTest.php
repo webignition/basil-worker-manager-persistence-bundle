@@ -26,17 +26,7 @@ class MachineProviderTest extends TestCase
     public function testCreate(): void
     {
         self::assertSame(self::MACHINE_ID, $this->machineProvider->getId());
-        self::assertNull($this->machineProvider->getRemoteId());
         self::assertSame(self::PROVIDER_NAME, $this->machineProvider->getName());
-    }
-
-    public function testGetSetRemoteId(): void
-    {
-        self::assertNull($this->machineProvider->getRemoteId());
-
-        $remoteId = 123;
-        $this->machineProvider->setRemoteId($remoteId);
-        self::assertSame($remoteId, $this->machineProvider->getRemoteId());
     }
 
     /**
@@ -60,12 +50,6 @@ class MachineProviderTest extends TestCase
             'different provider'
         );
 
-        $machineProviderWithRemoteId1 = new MachineProvider(self::MACHINE_ID, ProviderInterface::NAME_DIGITALOCEAN);
-        $machineProviderWithRemoteId1->setRemoteId(1);
-
-        $machineProviderWithRemoteId2 = new MachineProvider(self::MACHINE_ID, ProviderInterface::NAME_DIGITALOCEAN);
-        $machineProviderWithRemoteId2->setRemoteId(2);
-
         return [
             'current and new are equal' => [
                 'current' => new MachineProvider(self::MACHINE_ID, ProviderInterface::NAME_DIGITALOCEAN),
@@ -76,16 +60,6 @@ class MachineProviderTest extends TestCase
                 'current' => new MachineProvider(self::MACHINE_ID, ProviderInterface::NAME_DIGITALOCEAN),
                 'new' => $machineProviderWithDifferentName,
                 'expected' => $machineProviderWithDifferentName,
-            ],
-            'current and new have non-empty remote ids' => [
-                'current' => $machineProviderWithRemoteId1,
-                'new' => $machineProviderWithRemoteId2,
-                'expected' => $machineProviderWithRemoteId2,
-            ],
-            'current remote id is not overwritten by empty new remote id' => [
-                'current' => $machineProviderWithRemoteId1,
-                'new' => new MachineProvider(self::MACHINE_ID, ProviderInterface::NAME_DIGITALOCEAN),
-                'expected' => $machineProviderWithRemoteId1,
             ],
         ];
     }

@@ -18,11 +18,6 @@ class MachineProvider implements MachineProviderInterface
     private string $id;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
-    private ?int $remote_id;
-
-    /**
      * @ORM\Column(type="string", length=255)
      *
      * @var ProviderInterface::NAME_*
@@ -32,26 +27,15 @@ class MachineProvider implements MachineProviderInterface
     /**
      * @param ProviderInterface::NAME_* $provider
      */
-    public function __construct(string $id, string $provider, ?int $remoteId = null)
+    public function __construct(string $id, string $provider)
     {
         $this->id = $id;
         $this->provider = $provider;
-        $this->remote_id = $remoteId;
     }
 
     public function getId(): string
     {
         return $this->id;
-    }
-
-    public function getRemoteId(): ?int
-    {
-        return $this->remote_id;
-    }
-
-    public function setRemoteId(int $remoteId): void
-    {
-        $this->remote_id = $remoteId;
     }
 
     /**
@@ -65,11 +49,6 @@ class MachineProvider implements MachineProviderInterface
     public function merge(MachineProviderInterface $machineProvider): self
     {
         $this->provider = $machineProvider->getName();
-
-        $remoteId = $machineProvider->getRemoteId();
-        if (null !== $remoteId) {
-            $this->remote_id = $remoteId;
-        }
 
         return $this;
     }
