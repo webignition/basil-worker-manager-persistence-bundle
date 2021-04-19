@@ -5,13 +5,13 @@ declare(strict_types=1);
 namespace webignition\BasilWorkerManager\PersistenceBundle\Tests\Exception\MachineProvider;
 
 use webignition\BasilWorkerManagerInterfaces\Exception\MachineProvider\UnprocessableRequestExceptionInterface;
-use webignition\BasilWorkerManagerInterfaces\RemoteRequestActionInterface;
+use webignition\BasilWorkerManagerInterfaces\MachineActionInterface;
 
 class UnprocessableRequestException extends AbstractMachineProviderException implements
     UnprocessableRequestExceptionInterface
 {
     /**
-     * @param RemoteRequestActionInterface::ACTION_* $action
+     * @param MachineActionInterface::ACTION_* $action
      */
     public function __construct(
         private string $reason,

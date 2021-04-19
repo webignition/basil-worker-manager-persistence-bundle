@@ -5,12 +5,12 @@ declare(strict_types=1);
 namespace webignition\BasilWorkerManager\PersistenceBundle\Tests\Exception\MachineProvider;
 
 use webignition\BasilWorkerManagerInterfaces\Exception\MachineProvider\CurlExceptionInterface;
-use webignition\BasilWorkerManagerInterfaces\RemoteRequestActionInterface;
+use webignition\BasilWorkerManagerInterfaces\MachineActionInterface;
 
 class CurlException extends AbstractMachineProviderException implements CurlExceptionInterface
 {
     /**
-     * @param RemoteRequestActionInterface::ACTION_* $action
+     * @param MachineActionInterface::ACTION_* $action
      */
     public function __construct(
         private int $curlCode,

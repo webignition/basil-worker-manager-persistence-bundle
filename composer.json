@@ -19,7 +19,7 @@
         "symfony/dependency-injection": "^5.2",
         "symfony/http-kernel": "^5.2",
         "symfony/yaml": "^5.2",
-        "webignition/basil-worker-manager-interfaces": ">=0.13,<1"
+        "webignition/basil-worker-manager-interfaces": ">=0.22,<1"
     },
     "autoload": {
         "psr-4": {

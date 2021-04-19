@@ -47,6 +47,24 @@ class MachineTest extends TestCase
         self::assertSame($ipAddresses, $this->machine->getIpAddresses());
     }
 
+    public function testReset(): void
+    {
+        self::assertSame(MachineInterface::STATE_CREATE_RECEIVED, $this->machine->getState());
+        self::assertSame([], $this->machine->getIpAddresses());
+
+        $this->machine->setState(MachineInterface::STATE_CREATE_FAILED);
+        self::assertSame(MachineInterface::STATE_CREATE_FAILED, $this->machine->getState());
+
+        $ipAddresses = ['10.0.0.1'];
+        $this->machine->setIpAddresses($ipAddresses);
+        self::assertSame($ipAddresses, $this->machine->getIpAddresses());
+
+        $this->machine->reset();
+
+        self::assertSame(MachineInterface::STATE_CREATE_RECEIVED, $this->machine->getState());
+        self::assertSame([], $this->machine->getIpAddresses());
+    }
+
     public function testJsonSerialize(): void
     {
         self::assertSame(
