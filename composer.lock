@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "20416f836dd8858289561e78af3b543f",
+    "content-hash": "a42e90dd8131dc6110d47040e71ecee0",
     "packages": [
         {
             "name": "composer/package-versions-deprecated",
@@ -2919,16 +2919,16 @@
         },
         {
             "name": "webignition/basil-worker-manager-interfaces",
-            "version": "0.22",
+            "version": "0.23",
             "source": {
                 "type": "git",
                 "url": "https://github.com/webignition/basil-worker-manager-interfaces.git",
-                "reference": "982a4c853540ad1a6514753d786a0c64f06e126c"
+                "reference": "becbf4ff418e0a6bb376d57144c26dab24bb06ab"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/webignition/basil-worker-manager-interfaces/zipball/982a4c853540ad1a6514753d786a0c64f06e126c",
-                "reference": "982a4c853540ad1a6514753d786a0c64f06e126c",
+                "url": "https://api.github.com/repos/webignition/basil-worker-manager-interfaces/zipball/becbf4ff418e0a6bb376d57144c26dab24bb06ab",
+                "reference": "becbf4ff418e0a6bb376d57144c26dab24bb06ab",
                 "shasum": ""
             },
             "require": {
@@ -2960,9 +2960,9 @@
             "homepage": "https://github.com/webignition/basil-worker-manager-interfaces",
             "support": {
                 "issues": "https://github.com/webignition/basil-worker-manager-interfaces/issues",
-                "source": "https://github.com/webignition/basil-worker-manager-interfaces/tree/0.22"
+                "source": "https://github.com/webignition/basil-worker-manager-interfaces/tree/0.23"
             },
-            "time": "2021-04-19T14:34:28+00:00"
+            "time": "2021-04-19T15:31:07+00:00"
         }
     ],
     "packages-dev": [
