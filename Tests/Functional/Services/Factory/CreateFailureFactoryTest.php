@@ -22,8 +22,8 @@ use webignition\BasilWorkerManagerInterfaces\Exception\MachineProvider\HttpExcep
 use webignition\BasilWorkerManagerInterfaces\Exception\MachineProvider\UnknownExceptionInterface;
 use webignition\BasilWorkerManagerInterfaces\Exception\MachineProvider\UnprocessableRequestExceptionInterface;
 use webignition\BasilWorkerManagerInterfaces\Exception\UnsupportedProviderExceptionInterface;
+use webignition\BasilWorkerManagerInterfaces\MachineActionInterface;
 use webignition\BasilWorkerManagerInterfaces\ProviderInterface;
-use webignition\BasilWorkerManagerInterfaces\RemoteRequestActionInterface;
 
 class CreateFailureFactoryTest extends AbstractFunctionalTest
 {
@@ -77,7 +77,7 @@ class CreateFailureFactoryTest extends AbstractFunctionalTest
                 'exception' => new ApiLimitException(
                     123,
                     new \Exception(),
-                    RemoteRequestActionInterface::ACTION_CREATE
+                    MachineActionInterface::ACTION_CREATE
                 ),
                 'expectedCreateFailure' => new CreateFailure(
                     self::MACHINE_ID,
@@ -91,7 +91,7 @@ class CreateFailureFactoryTest extends AbstractFunctionalTest
             AuthenticationExceptionInterface::class => [
                 'exception' => new AuthenticationException(
                     new \Exception(),
-                    RemoteRequestActionInterface::ACTION_CREATE
+                    MachineActionInterface::ACTION_CREATE
                 ),
                 'expectedCreateFailure' => new CreateFailure(
                     self::MACHINE_ID,
@@ -103,7 +103,7 @@ class CreateFailureFactoryTest extends AbstractFunctionalTest
                 'exception' => new CurlException(
                     7,
                     new \Exception(),
-                    RemoteRequestActionInterface::ACTION_CREATE
+                    MachineActionInterface::ACTION_CREATE
                 ),
                 'expectedCreateFailure' => new CreateFailure(
                     self::MACHINE_ID,
@@ -118,7 +118,7 @@ class CreateFailureFactoryTest extends AbstractFunctionalTest
                 'exception' => new HttpException(
                     500,
                     new \Exception(),
-                    RemoteRequestActionInterface::ACTION_CREATE
+                    MachineActionInterface::ACTION_CREATE
                 ),
                 'expectedCreateFailure' => new CreateFailure(
                     self::MACHINE_ID,
@@ -133,7 +133,7 @@ class CreateFailureFactoryTest extends AbstractFunctionalTest
                 'exception' => new UnprocessableRequestException(
                     UnprocessableRequestExceptionInterface::REASON_REMOTE_PROVIDER_RESOURCE_LIMIT_REACHED,
                     new \Exception(),
-                    RemoteRequestActionInterface::ACTION_CREATE
+                    MachineActionInterface::ACTION_CREATE
                 ),
                 'expectedCreateFailure' => new CreateFailure(
                     self::MACHINE_ID,
@@ -148,7 +148,7 @@ class CreateFailureFactoryTest extends AbstractFunctionalTest
             UnknownExceptionInterface::class => [
                 'exception' => new UnknownException(
                     new \Exception(),
-                    RemoteRequestActionInterface::ACTION_CREATE
+                    MachineActionInterface::ACTION_CREATE
                 ),
                 'expectedCreateFailure' => new CreateFailure(
                     self::MACHINE_ID,

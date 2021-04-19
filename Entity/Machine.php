@@ -85,6 +85,12 @@ class Machine implements MachineInterface
         $this->ip_addresses = $ipAddresses;
     }
 
+    public function reset(): void
+    {
+        $this->state = MachineInterface::STATE_CREATE_RECEIVED;
+        $this->ip_addresses = [];
+    }
+
     /**
      * @return array<mixed>
      */

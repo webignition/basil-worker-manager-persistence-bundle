@@ -5,12 +5,12 @@ declare(strict_types=1);
 namespace webignition\BasilWorkerManager\PersistenceBundle\Tests\Exception\MachineProvider;
 
 use webignition\BasilWorkerManagerInterfaces\Exception\MachineProvider\HttpExceptionInterface;
-use webignition\BasilWorkerManagerInterfaces\RemoteRequestActionInterface;
+use webignition\BasilWorkerManagerInterfaces\MachineActionInterface;
 
 class HttpException extends AbstractMachineProviderException implements HttpExceptionInterface
 {
     /**
-     * @param RemoteRequestActionInterface::ACTION_* $action
+     * @param MachineActionInterface::ACTION_* $action
      */
     public function __construct(
         private int $statusCode,
